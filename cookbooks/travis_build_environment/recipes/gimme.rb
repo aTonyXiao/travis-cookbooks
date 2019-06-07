@@ -25,16 +25,16 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 def obtain_gimme_url
-#   http = Net::HTTP.new('api.github.com', 443)
-#   http.use_ssl = true
-#   http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-#   request = Net::HTTP::Get.new('/repos/travis-ci/gimme/releases/11229024')
-#   request['Accept'] = 'application/json'
+  http = Net::HTTP.new('api.github.com', 443)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+  request = Net::HTTP::Get.new('/repos/travis-ci/gimme/releases/11229024')
+  request['Accept'] = 'application/json'
 #   token = node&.[]('travis_packer_build')&.[]('github_token')
 #   request['Authorization'] = "token #{token}" if token
-#   response = http.request(request)
-#   tag = JSON.parse(response.body).fetch('tag_name')
-  "https://raw.githubusercontent.com/travis-ci/gimme/v1.5.3/gimme"
+  response = http.request(request)
+  tag = JSON.parse(response.body).fetch('tag_name')
+  "https://raw.githubusercontent.com/travis-ci/gimme/#{tag}/gimme"
 end
 
 gimme_url = obtain_gimme_url
