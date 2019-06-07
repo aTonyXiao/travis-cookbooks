@@ -33,8 +33,8 @@ def obtain_nvm_url
   http.verify_mode = OpenSSL::SSL::VERIFY_PEER
   request = Net::HTTP::Get.new('/repos/nvm-sh/nvm/releases/latest')
   request['Accept'] = 'application/json'
-  token = node&.[]('travis_packer_build')&.[]('github_token')
-  request['Authorization'] = "token #{token}" if token
+#   token = node&.[]('travis_packer_build')&.[]('github_token')
+#   request['Authorization'] = "token #{token}" if token
   response = http.request(request)
   tag = JSON.parse(response.body).fetch('tag_name')
   "https://raw.githubusercontent.com/nvm-sh/nvm/#{tag}/nvm.sh"
