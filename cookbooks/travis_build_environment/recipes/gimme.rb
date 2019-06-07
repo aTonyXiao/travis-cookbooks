@@ -28,7 +28,7 @@ def obtain_gimme_url
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-  request = Net::HTTP::Get.new('/repos/travis-ci/gimme/releases/latest')
+  request = Net::HTTP::Get.new('/repos/travis-ci/gimme/releases/11229024')
   request['Accept'] = 'application/json'
   token = node&.[]('travis_packer_build')&.[]('github_token')
   request['Authorization'] = "token #{token}" if token
