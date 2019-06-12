@@ -135,7 +135,7 @@ node['travis_build_environment']['pythons'].each do |py|
   end
 
   packages = []
-  tmp = node['travis_build_environment']['python_aliases'].fetch(py, [])
+  tmp = node.default['travis_build_environment']['python_aliases'].fetch(py, [])
   tmp.concat(['default', py]).each do |name|
     packages.concat(node['travis_build_environment']['pip']['packages'].fetch(name, []))
   end
